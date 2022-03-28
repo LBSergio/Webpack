@@ -22,6 +22,7 @@ module.exports = {
             '@templates': path.resolve(__dirname, 'src/templates/'),
             '@styles': path.resolve(__dirname, 'src/styles/'),
             '@images': path.resolve(__dirname, 'src/assets/images/'),
+            '@components': path.resolve(__dirname, 'src/components/'),
         },
     },
     module:{
@@ -81,11 +82,4 @@ module.exports = {
         new Dotenv(),
         new BundleAnalyzerPlugin(),
     ],
-    devServer: {
-		static: path.join(__dirname, 'dist'),
-		compress: true,
-		historyApiFallback: true,
-		port: 8080,
-		open: true,
-    },
 }

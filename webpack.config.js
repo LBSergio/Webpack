@@ -13,7 +13,8 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         //filename: '[name][contenthash].js',
         filename: 'bundle.js',
-        assetModuleFilename: 'assets/images/[hash][ext][query]'
+        assetModuleFilename: 'assets/images/[hash][ext][query]',
+        publicPath: "/",
     },
     resolve: {
         extensions: ['.js', '.jsx'],
@@ -22,6 +23,7 @@ module.exports = {
             '@templates': path.resolve(__dirname, 'src/templates/'),
             '@styles': path.resolve(__dirname, 'src/styles/'),
             '@images': path.resolve(__dirname, 'src/assets/images/'),
+            '@components': path.resolve(__dirname, 'src/components/'),
         },
     },
     module:{
@@ -67,12 +69,6 @@ module.exports = {
                 }]
             },
         ]
-    },
-    devServer:{
-        static: path.join(__dirname, 'dist'),
-        compress: true,
-        open: true,
-        port: 8080,
     },
     plugins:[
         new HtmlWebpackPlugin({
