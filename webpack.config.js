@@ -11,11 +11,12 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name][contenthash].js',
+        //filename: '[name][contenthash].js',
+        filename: 'bundle.js',
         assetModuleFilename: 'assets/images/[hash][ext][query]'
     },
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.js', '.jsx'],
         alias: {
             '@utils': path.resolve(__dirname, 'src/utils/'),
             '@templates': path.resolve(__dirname, 'src/templates/'),
@@ -26,18 +27,19 @@ module.exports = {
     module:{
         rules:[
             {
-                test: /\.m?js$/,
+                test: /\.m?(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader'
                 }
             },
             {
-                test: /\.css|.styl$/i,
+                test: /\.s?[ac]ss|.styl$/i,
                 use:[
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'stylus-loader',
+                    'sass-loader',
                 ],
             },
             {
@@ -58,7 +60,19 @@ module.exports = {
                     },
                 },
             },
+            {
+                test: /\.html$/,
+                use: [{
+                    loader: 'html-loader',
+                }]
+            },
         ]
+    },
+    devServer:{
+        static: path.join(__dirname, 'dist'),
+        compress: true,
+        open: true,
+        port: 8080,
     },
     plugins:[
         new HtmlWebpackPlugin({
