@@ -1,7 +1,7 @@
 //import Template from '@templates/Template.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './components/App';
+import { App } from '@components/App';
 import '@styles/main.css';
 import '@styles/global.scss';
 import '@styles/vars.styl';
